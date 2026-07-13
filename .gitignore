@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+._*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS thumbnails / metadata
+Thumbs.db
+Desktop.ini

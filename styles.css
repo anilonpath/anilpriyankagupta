@@ -750,6 +750,81 @@ img { max-width: 100%; display: block; }
   font-size: 0.85rem;
 }
 
+/* -------- Real photo overlays the placeholder gradient -------- */
+.gallery-item { position: relative; }
+.gallery-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: transform 0.8s ease;
+}
+.gallery-item:hover .gallery-photo { transform: scale(1.06); }
+/* When a photo is present, dim/hide the placeholder text (the img covers it) */
+.gallery-item:has(.gallery-photo) .gallery-placeholder { opacity: 0; }
+
+/* Caption sits above the image */
+.gallery-item::after { z-index: 2; }
+
+/* -------- Album header — a travel-journal look -------- */
+.album {
+  padding: 4rem 1.5rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.album + .album { padding-top: 2rem; }
+
+.album-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+.album-eyebrow {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+  padding: 0.35rem 1rem;
+  display: inline-block;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+.album-title {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1;
+  margin: 0.75rem 0 0.25rem;
+  background: linear-gradient(180deg, var(--rose-deep), var(--burgundy) 60%, var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 3px 15px rgba(194, 24, 91, 0.15));
+}
+.album-subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--rose-deep);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.album-caption {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--muted);
+  max-width: 560px;
+  margin: 1rem auto 0;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
 /* =========================================================
    Quotes
    ========================================================= */
