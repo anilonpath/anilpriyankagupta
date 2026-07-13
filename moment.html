@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>This Moment &mdash; Anil &amp; Priyanka</title>
+  <meta name="description" content="Every second with you is precious." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="hearts-container" aria-hidden="true"></div>
+  <div id="nav-placeholder"></div>
+
+  <main>
+    <header class="page-hero">
+      <p class="page-hero-eyebrow reveal">Every second matters</p>
+      <h1 class="page-hero-title reveal">This Moment</h1>
+      <div class="ornament reveal"><span></span><svg viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.3,2.2-7.6,5.3C14.7,2.2,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,16,21.2,16,21.2s16-11.8,16-21.2C32,3.8,28.2,0,23.6,0z"/></svg><span></span></div>
+      <p class="page-hero-subtitle reveal">Time is precious &mdash; and every second with you is a gift.</p>
+    </header>
+
+    <section id="moment" class="section moment-section">
+      <div class="moment-grid">
+        <!-- Current date & time -->
+        <article class="moment-card reveal">
+          <p class="moment-label">Right Now</p>
+          <p class="moment-day" id="clockDay">&mdash;</p>
+          <p class="moment-date" id="clockDate">&mdash;</p>
+
+          <div class="clock" aria-live="off">
+            <span class="clock-part">
+              <span class="clock-digits" id="clockHours">00</span>
+              <span class="clock-tag">hrs</span>
+            </span>
+            <span class="clock-sep">:</span>
+            <span class="clock-part">
+              <span class="clock-digits" id="clockMinutes">00</span>
+              <span class="clock-tag">min</span>
+            </span>
+            <span class="clock-sep clock-sep-blink">:</span>
+            <span class="clock-part">
+              <span class="clock-digits clock-seconds" id="clockSeconds">00</span>
+              <span class="clock-tag">sec</span>
+            </span>
+          </div>
+
+          <p class="moment-meridian" id="clockMeridian">AM</p>
+          <p class="moment-tz" id="clockZone">&mdash;</p>
+        </article>
+
+        <!-- Together For -->
+        <article class="moment-card moment-card-alt reveal">
+          <p class="moment-label">Together For</p>
+          <div class="together-grid">
+            <div class="together-unit">
+              <span class="together-num" id="togetherYears">0</span>
+              <span class="together-word">Years</span>
+            </div>
+            <div class="together-unit">
+              <span class="together-num" id="togetherMonths">0</span>
+              <span class="together-word">Months</span>
+            </div>
+            <div class="together-unit">
+              <span class="together-num" id="togetherDays">0</span>
+              <span class="together-word">Days</span>
+            </div>
+          </div>
+          <div class="together-time">
+            <span id="togetherHours">00</span>h
+            <span id="togetherMinutes">00</span>m
+            <span id="togetherSeconds" class="clock-seconds">00</span>s
+          </div>
+          <p class="together-since" id="togetherSince">Since our first hello</p>
+        </article>
+      </div>
+    </section>
+
+    <div id="page-nav-placeholder"></div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="script.js"></script>
+</body>
+</html>
