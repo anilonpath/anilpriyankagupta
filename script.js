@@ -389,6 +389,81 @@
   }
 
   /* -----------------------------------------------------
+   *  Hero Slideshow — auto-swaps every 3 seconds
+   *  with dots for manual navigation and pause-on-hover.
+   * ----------------------------------------------------- */
+  const SLIDESHOW_INTERVAL = 3000; // 3 seconds — change to taste
+
+  function initHeroSlideshow() {
+    const slideshow = document.querySelector(".hero-slideshow");
+    if (!slideshow) return;
+
+    const slides = slideshow.querySelectorAll(".slide");
+    const dotsContainer = slideshow.querySelector(".slideshow-dots");
+    if (slides.length === 0 || !dotsContainer) return;
+
+    let currentIdx = 0;
+    let timer = null;
+
+    // Build dots for manual navigation
+    slides.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.className = "slideshow-dot" + (i === 0 ? " is-active" : "");
+      dot.setAttribute("role", "tab");
+      dot.setAttribute("aria-label", "Show photo " + (i + 1));
+      dot.addEventListener("click", () => {
+        goToSlide(i);
+        restart();
+      });
+      dotsContainer.appendChild(dot);
+    });
+    const dots = dotsContainer.querySelectorAll(".slideshow-dot");
+
+    function goToSlide(idx) {
+      slides[currentIdx].classList.remove("is-active");
+      dots[currentIdx].classList.remove("is-active");
+      currentIdx = idx;
+      slides[currentIdx].classList.add("is-active");
+      dots[currentIdx].classList.add("is-active");
+    }
+
+    function nextSlide() {
+      goToSlide((currentIdx + 1) % slides.length);
+    }
+
+    function start() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      timer = setInterval(nextSlide, SLIDESHOW_INTERVAL);
+    }
+    function stop() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+    function restart() { stop(); start(); }
+
+    // Pause when hovering, resume on leave
+    slideshow.addEventListener("mouseenter", stop);
+    slideshow.addEventListener("mouseleave", start);
+
+    // Pause when tab is hidden (saves CPU)
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop();
+      else start();
+    });
+
+    // Preload next images for smoother transitions
+    slides.forEach((slide) => {
+      const bg = slide.style.backgroundImage;
+      const src = bg && bg.match(/url\(['"]?(.*?)['"]?\)/);
+      if (src && src[1]) {
+        const img = new Image();
+        img.src = src[1];
+      }
+    });
+
+    start();
+  }
+
+  /* -----------------------------------------------------
    *  Mini calendars for the Journey page
    *  Each <div class="mini-calendar" data-year data-month data-day data-caption>
    *  gets rendered as a beautiful month grid with the target day
@@ -824,6 +899,7 @@
     initWishForm();
     initMiniCalendars();
     initVisitorCount();
+    initHeroSlideshow();
 
     // Reveal the hero content immediately
     document.querySelectorAll(".hero .reveal").forEach((el) =>

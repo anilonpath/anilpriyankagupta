@@ -23,6 +23,29 @@
   <!-- Navigation (injected by script.js) -->
   <div id="nav-placeholder"></div>
 
+  <!-- HERO SLIDESHOW — auto-swaps every 3 seconds -->
+  <section class="hero-slideshow" aria-label="Photos of Anil and Priyanka" aria-roledescription="carousel">
+    <div class="slideshow-track">
+      <div class="slide is-active" style="background-image: url('images/agra/1.jpg');" role="img" aria-label="At the Taj Mahal"></div>
+      <div class="slide" style="background-image: url('images/agra/2.jpg');" role="img" aria-label="Together in Agra"></div>
+      <div class="slide" style="background-image: url('images/agra/3.jpg');" role="img" aria-label="Sharing a moment"></div>
+      <div class="slide" style="background-image: url('images/agra/4.jpg');" role="img" aria-label="A treasured moment"></div>
+      <div class="slide" style="background-image: url('images/agra/5.jpg');" role="img" aria-label="Memories from Agra"></div>
+      <div class="slide" style="background-image: url('images/agra/6.jpg');" role="img" aria-label="Us in the city of love"></div>
+    </div>
+
+    <!-- Subtle overlay text -->
+    <div class="slideshow-overlay">
+      <p class="slideshow-eyebrow">Our love story</p>
+      <div class="slideshow-heart" aria-hidden="true">
+        <svg viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.3,2.2-7.6,5.3C14.7,2.2,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,16,21.2,16,21.2s16-11.8,16-21.2C32,3.8,28.2,0,23.6,0z"/></svg>
+      </div>
+    </div>
+
+    <!-- Navigation dots (created by JS) -->
+    <div class="slideshow-dots" role="tablist" aria-label="Slide navigation"></div>
+  </section>
+
   <!-- HERO -->
   <header id="home" class="hero">
     <div class="hero-aura" aria-hidden="true"></div>

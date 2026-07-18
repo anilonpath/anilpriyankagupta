@@ -160,6 +160,139 @@ img { max-width: 100%; display: block; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* =========================================================
+   Hero Slideshow — auto-swap photo carousel
+   ========================================================= */
+.hero-slideshow {
+  position: relative;
+  width: 100%;
+  height: 62vh;
+  min-height: 420px;
+  max-height: 780px;
+  overflow: hidden;
+  background: #1a0a10;   /* dark fallback while first image loads */
+  margin-top: 0;
+}
+
+.slideshow-track {
+  position: absolute;
+  inset: 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+  transform: scale(1.02);
+  will-change: opacity, transform;
+}
+.slide.is-active {
+  opacity: 1;
+  z-index: 1;
+  /* Gentle Ken Burns zoom while displayed (~3s + fade tail) */
+  animation: kenBurns 5s ease-out forwards;
+}
+@keyframes kenBurns {
+  from { transform: scale(1.02); }
+  to   { transform: scale(1.09); }
+}
+
+/* Cinematic gradient overlay so overlay text stays readable */
+.slideshow-track::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.05) 25%,
+      rgba(0, 0, 0, 0.05) 60%,
+      rgba(109, 26, 54, 0.55) 100%);
+}
+
+/* Overlay text (eyebrow + heart) */
+.slideshow-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  pointer-events: none;
+  text-align: center;
+}
+.slideshow-eyebrow {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: #ffe9c4;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  font-size: clamp(0.75rem, 1.6vw, 1rem);
+  margin: 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+  padding-left: 0.5em;
+}
+.slideshow-heart {
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  animation: heartbeat 1.7s ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(233, 30, 99, 0.6));
+}
+.slideshow-heart svg { width: 100%; height: 100%; fill: currentColor; }
+
+/* Navigation dots (elegant thin bars) */
+.slideshow-dots {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 4;
+  padding: 0.5rem 0.85rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.slideshow-dot {
+  width: 22px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 0;
+  border-radius: 2px;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.35s ease, width 0.35s ease;
+}
+.slideshow-dot:hover { background: rgba(255, 255, 255, 0.75); }
+.slideshow-dot.is-active {
+  background: linear-gradient(90deg, #ffd76b, #e91e63);
+  width: 40px;
+}
+
+@media (max-width: 640px) {
+  .hero-slideshow { height: 55vh; min-height: 320px; }
+  .slideshow-dot { width: 18px; }
+  .slideshow-dot.is-active { width: 32px; }
+  .slideshow-heart { width: 30px; height: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-active { animation: none; }
+  .slide { transition: opacity 0.3s ease; }
+}
+
+/* =========================================================
    Hero — Glorious edition
    ========================================================= */
 .hero {
