@@ -200,19 +200,14 @@ img { max-width: 100%; display: block; }
   to   { transform: scale(1.09); }
 }
 
-/* Cinematic gradient overlay so overlay text stays readable */
+/* Transparent overlay — no tint, photos show natural colours */
 .slideshow-track::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background:
-    linear-gradient(180deg,
-      rgba(0, 0, 0, 0.35) 0%,
-      rgba(0, 0, 0, 0.05) 25%,
-      rgba(0, 0, 0, 0.05) 60%,
-      rgba(109, 26, 54, 0.55) 100%);
+  background: transparent;
 }
 
 /* Overlay text (eyebrow + heart) */
@@ -237,7 +232,10 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   font-size: clamp(0.75rem, 1.6vw, 1rem);
   margin: 0;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+  /* Layered shadows so text reads on any background (bright sky, dark clothing, etc.) */
+  text-shadow:
+    0 0 10px rgba(0, 0, 0, 0.6),
+    0 2px 14px rgba(0, 0, 0, 0.85);
   padding-left: 0.5em;
 }
 .slideshow-heart {
@@ -245,7 +243,9 @@ img { max-width: 100%; display: block; }
   height: 36px;
   color: #fff;
   animation: heartbeat 1.7s ease-in-out infinite;
-  filter: drop-shadow(0 4px 12px rgba(233, 30, 99, 0.6));
+  filter:
+    drop-shadow(0 0 6px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 4px 12px rgba(233, 30, 99, 0.6));
 }
 .slideshow-heart svg { width: 100%; height: 100%; fill: currentColor; }
 
